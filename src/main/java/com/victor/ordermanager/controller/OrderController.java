@@ -49,7 +49,7 @@ public class OrderController {
 
 
 
-    @PutMapping("/orders/new")
+    @PostMapping("/orders/new")
     public ResponseEntity<Order> addOrder(@RequestBody Order order) {
         System.err.println(order.getOrderItems());
         order.getOrderItems().forEach(orderItem -> orderItemService.save(orderItem));
