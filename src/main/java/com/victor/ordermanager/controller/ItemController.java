@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping({"/api", "/"})
+@CrossOrigin
+@RequestMapping("/api")
 public class ItemController {
 
     private ItemService itemService;
