@@ -93,6 +93,14 @@ class OrderControllerTest {
     }
 
     @Test
+    void addOrderNoContent() throws Exception {
+        mockMvc.perform(put("/api/orders/new")
+                .content(json.write(new Order()).getJson())
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
     void getOrders() throws Exception {
         mockMvc.perform(get("/api/orders")
                 .contentType(MediaType.APPLICATION_JSON))
