@@ -23,7 +23,7 @@ public class ItemController {
     }
 
     @GetMapping({"/items"})
-    public ResponseEntity<List<Item>> getOrders(){
+    public ResponseEntity<List<Item>> getItems(){
         List<Item> items = itemService.findAll();
         return new ResponseEntity<>(items, HttpStatus.OK);
     }

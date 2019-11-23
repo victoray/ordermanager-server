@@ -40,7 +40,7 @@ class ItemControllerTest {
     }
 
     @Test
-    void getOrders() throws Exception {
+    void getItems() throws Exception {
         mockMvc.perform(get("/api/items")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());

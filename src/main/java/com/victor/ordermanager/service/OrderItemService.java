@@ -28,7 +28,7 @@ public class OrderItemService {
         return orderItemRepository.findById(id);
     }
 
-    public void save(OrderItem orderItem){
-       orderItemRepository.save(orderItem);
+    public OrderItem save(OrderItem orderItem){
+       return orderItemRepository.save(orderItem);
     }
 }

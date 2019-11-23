@@ -1,8 +1,10 @@
 package com.victor.ordermanager.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.victor.ordermanager.model.Item;
 import com.victor.ordermanager.model.Order;
 import com.victor.ordermanager.model.OrderItem;
+import com.victor.ordermanager.service.ItemService;
 import com.victor.ordermanager.service.OrderItemService;
 import com.victor.ordermanager.service.OrderService;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,9 +49,15 @@ class OrderControllerTest {
 
     @BeforeEach
     void setUp(){
+
+        OrderItem orderItem = new OrderItem();
+        orderItem.setId(1L);
+        orderItem.setItem(null);
+        orderItem.setQuantity(10L);
+
         Order order = new Order();
         order.setId(1L);
-        order.setOrderItems(new ArrayList<>());
+        order.setOrderItems(Collections.singletonList(orderItem));
         order.setTotal(43);
         order.setOrderDate(new Date());
 
@@ -60,15 +68,24 @@ class OrderControllerTest {
         given(orderService.findById(any())).willReturn(Optional.of(order));
         given(orderService.save(any())).willReturn(order);
 
+        given(orderItemService.save(any())).willReturn(orderItem);
+
     }
 
     @Test
     void addOrder() throws Exception {
+
+        OrderItem orderItem = new OrderItem();
+        orderItem.setId(1L);
+        orderItem.setItem(null);
+        orderItem.setQuantity(10L);
+
         Order order = new Order();
         order.setId(1L);
-        order.setOrderItems(new ArrayList<>());
+        order.setOrderItems(Collections.singletonList(orderItem));
         order.setTotal(43);
         order.setOrderDate(new Date());
+
         mockMvc.perform(put("/api/orders/new")
                 .content(json.write(order).getJson())
                 .contentType(MediaType.APPLICATION_JSON))

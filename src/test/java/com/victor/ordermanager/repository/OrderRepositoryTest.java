@@ -36,9 +36,13 @@ class OrderRepositoryTest {
 
     @Test
     void findById() {
-        Order foundOrder = repository.findById(3L).orElse(null);
+        Order order = new Order();
+        entityManager.persist(order);
+        entityManager.flush();
+
+        Order foundOrder = repository.findById(order.getId()).orElse(null);
         assertNotNull(foundOrder);
-        assertEquals(3L, foundOrder.getId());
+        assertEquals(order.getId(), foundOrder.getId());
     }
 
     @Test
